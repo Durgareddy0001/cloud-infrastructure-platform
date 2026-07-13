@@ -1,4 +1,6 @@
-from pydantic import BaseModel
+from typing import Optional
+
+from pydantic import BaseModel, ConfigDict
 
 
 class InfrastructureResponse(BaseModel):
@@ -7,17 +9,18 @@ class InfrastructureResponse(BaseModel):
     status: str
     message: str
 
-    class Config:
-        from_attributes = True
-
-
 class InfrastructureRequestResponse(BaseModel):
     request_id: str
     application_name: str
     environment: str
     region: str
     namespace: str
+    cpu: str
+    memory: str
+    node_pool: str
+    storage_bucket: Optional[str] = None
+    bigquery_dataset: Optional[str] = None
+    service_account: Optional[str] = None
     status: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
