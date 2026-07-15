@@ -12,4 +12,4 @@ bucket_required = true
 
 bigquery_required = true
 
-service_account_required = true
+service_account_required = false
