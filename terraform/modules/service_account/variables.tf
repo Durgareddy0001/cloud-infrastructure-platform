@@ -9,7 +9,3 @@ variable "application_name" {
 variable "environment" {
   type = string
 }
-
-variable "location" {
-  type = string
-}
