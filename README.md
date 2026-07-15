@@ -455,3 +455,4 @@ Application infrastructure (our project):
 ✅ Artifact Registry
 ✅ Secret Manager
 ✅ Workload Identity
+
