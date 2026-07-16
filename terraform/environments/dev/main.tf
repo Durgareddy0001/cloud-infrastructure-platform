@@ -43,3 +43,37 @@ module "iam" {
   service_account_email = module.service_account[0].service_account_email
   role                  = var.role
 }
+
+module "gke" {
+  source = "../../modules/gke"
+
+  project_id       = var.project_id
+  application_name = var.application_name
+  environment      = var.environment
+  location         = var.location
+}
+
+module "node_pool" {
+
+  source = "../../modules/node_pool"
+
+  project_id       = var.project_id
+  location         = var.location
+  application_name = var.application_name
+  environment      = var.environment
+
+  cluster_name = module.gke.cluster_name
+}
+
+module "namespace" {
+
+  source = "../../modules/namespace"
+
+  application_name = var.application_name
+  environment      = var.environment
+
+  depends_on = [
+    module.gke,
+    module.node_pool
+  ]
+}
